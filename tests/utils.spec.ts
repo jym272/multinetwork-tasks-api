@@ -19,4 +19,12 @@ test.describe('routes: health', () => {
     expect(response.ok()).toBe(true);
     expect(response.status()).toBe(200);
   });
+  test('wildcard route', async ({ request }) => {
+    const randomString = Math.random().toString(36).substring(7);
+    const response = await request.get(`/${randomString}`);
+    const body = await response.body();
+    expect(response.ok()).toBe(false);
+    expect(body.toString()).toBe('Not Found!');
+    expect(response.status()).toBe(404);
+  });
 });

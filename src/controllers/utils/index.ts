@@ -21,7 +21,7 @@ const envController = () => {
 
 const notFoundController = () => {
   return (req: Request, res: Response) => {
-    res.status(404).send('Not Found');
+    res.status(404).send('Not Found!');
   };
 };
 
