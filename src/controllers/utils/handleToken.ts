@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { controllerErrorWithMessage } from '@utils/index';
+import { authApiUrl, controllerErrorWithMessage } from '@utils/index';
 import axios from 'axios';
-import { DecodedPermission } from '@custom-types/index';
+import { DecodedToken } from '@custom-types/index';
 
 export const handleTokenController = () => {
   return async (req: Request, res: Response, next: NextFunction) => {
@@ -16,9 +16,11 @@ export const handleTokenController = () => {
 
     let response;
     try {
-      response = await axios.get(`http://localhost:3051/verify-token/${token}`);
-      const data = response.data as DecodedPermission;
-      if (!data.authenticate) {
+      response = await axios.get(`${authApiUrl}/verify-token/${token}`);
+      const {
+        permissions: { authenticate }
+      } = response.data as DecodedToken;
+      if (!authenticate) {
         return controllerErrorWithMessage(res, 'Authenticate is not true.', 'Unauthorized.');
       }
       next();

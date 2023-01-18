@@ -9,8 +9,8 @@ export interface TaskType extends NewTaskType {
   status: StatusType;
 }
 
-export interface DecodedPermission {
-  authenticate: boolean;
-  iat: number;
-  exp: number;
+export interface DecodedToken {
+  permissions: {
+    authenticate: boolean;
+  };
 }
