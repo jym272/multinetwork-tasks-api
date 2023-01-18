@@ -22,7 +22,7 @@ export const init = (sequelize: Sequelize) => {
         field: 'description'
       },
       status: {
-        type: DataTypes.ENUM('new', 'in progress', 'done'),
+        type: DataTypes.ENUM('new', 'in-progress', 'done'),
         allowNull: false,
         field: 'status'
       }

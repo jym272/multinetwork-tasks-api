@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { handleTokenController } from '@controllers/utils/handleToken';
 
 const crashServerController = () => {
   return (req: Request, res: Response) => {
@@ -29,5 +30,6 @@ export const utilsController = {
   crashServer: crashServerController(),
   health: healthController(),
   env: envController(),
-  notFound: notFoundController()
+  notFound: notFoundController(),
+  handleToken: handleTokenController()
 };
