@@ -1,0 +1,4 @@
+export const TASKS = {
+  NAME_MAX_LENGTH: 1000,
+  DESCRIPTION_MAX_LENGTH: 10000
+};

@@ -9,7 +9,7 @@ curl -s -X POST -H "Authorization: Bearer $token"  -H "Content-Type: application
 curl -s -H "Authorization: Bearer $token" http://localhost:3052/get-all | jq
 
 #update task, /update-task/:id  -> the contenet can be name, description, status or none of them
-curl -s -X POST -H "Authorization: Bearer $token" -H "Content-Type: application/json" -d '{"name": "new-task", "description": "some description", "status": "done"}' http://localhost:3052/update-task/8 | jq
+curl -s -X PUT -H "Authorization: Bearer $token" -H "Content-Type: application/json" -d '{"name": "new-task", "description": "some description", "status": "done"}' http://localhost:3052/update-task/8 | jq
 
 #delete task
 curl -s -X DELETE -H "Authorization: Bearer $token" http://localhost:3052/delete-task/8 | jq

@@ -8,6 +8,8 @@ const sequelize = getSequelizeClient();
 export const deleteTaskController = () => {
   return async (req: Request, res: Response) => {
     const id = req.params.id;
+    const authId = res.locals.authId as number;
+
     if (!isValidId(id)) {
       return controllerErrorWithMessage(res, new Error('Invalid id.'), 'Invalid id.');
     }
@@ -15,7 +17,8 @@ export const deleteTaskController = () => {
       const result = await sequelize.transaction(async () => {
         return await Task.destroy({
           where: {
-            id
+            id,
+            authId
           }
         });
       });

@@ -1,5 +1,7 @@
 import { DataTypes, Sequelize } from 'sequelize';
 import { Task } from '@db/models';
+import { TASKS } from '@utils/constants';
+const { NAME_MAX_LENGTH, DESCRIPTION_MAX_LENGTH } = TASKS;
 
 export const init = (sequelize: Sequelize) => {
   Task.init(
@@ -12,12 +14,12 @@ export const init = (sequelize: Sequelize) => {
         field: 'id'
       },
       name: {
-        type: DataTypes.STRING(64),
+        type: DataTypes.STRING(NAME_MAX_LENGTH),
         allowNull: false,
         field: 'name'
       },
       description: {
-        type: DataTypes.STRING(64),
+        type: DataTypes.STRING(DESCRIPTION_MAX_LENGTH),
         allowNull: false,
         field: 'description'
       },
@@ -25,6 +27,11 @@ export const init = (sequelize: Sequelize) => {
         type: DataTypes.ENUM('new', 'in-progress', 'done'),
         allowNull: false,
         field: 'status'
+      },
+      authId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        field: 'auth_id'
       }
     },
     {

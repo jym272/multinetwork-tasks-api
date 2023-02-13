@@ -18,11 +18,13 @@ export const handleTokenController = () => {
     try {
       response = await axios.get(`${authApiUrl}/verify-token/${token}`);
       const {
-        permissions: { authenticate }
+        permissions: { authenticate },
+        jti
       } = response.data as DecodedToken;
       if (!authenticate) {
         return controllerErrorWithMessage(res, 'Authenticate is not true.', 'Unauthorized.');
       }
+      res.locals.authId = Number(jti);
       next();
     } catch (err) {
       if (axios.isAxiosError(err)) {
