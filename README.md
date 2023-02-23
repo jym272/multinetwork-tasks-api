@@ -4,7 +4,7 @@ Part of multinetwork project(add url)
 
 #### This project needs an `env` file in the root directory with the following:
 
-```bash
+```dotenv
 PORT=3052
 POSTGRES_USER=jorge
 POSTGRES_DB=tasks
